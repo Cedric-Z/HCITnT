@@ -31,8 +31,8 @@
         <% if(username){ %>
 
         <form class="form-inline my-2 my-lg-0">
-            <span>Welcome, <%= username %></span>
-            <button class="btn btn-primary my-2 my-sm-0" type="submit">Personal Center</button>
+            <span style="margin-right: 10px">Welcome, <%= username %>. </span>
+            <button class="btn btn-primary my-2 my-sm-0" type="submit" id="personal_center_button">Personal Center</button>
 
         </form>
 
@@ -43,10 +43,10 @@
                 <div class="collapse navbar-collapse">
                     <li class="nav-item" style="margin-right: 20px">
 
-                        <button class="btn btn-primary my-2 my-sm-0">Login</button>
+                        <button id="login_button" class="btn btn-primary my-2 my-sm-0">Login</button>
                     </li>
                     <!--<li class="nav-item">-->
-                        <!--<button class="btn btn-outline-light my-2 my-sm-0">Sign up</button>-->
+                    <!--<button class="btn btn-outline-light my-2 my-sm-0">Sign up</button>-->
                     <!--</li>-->
                 </div>
             </ul>
@@ -56,3 +56,112 @@
         <% } %>
     </div>
 </nav>
+
+
+<div id="login_modal" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="height: 10px">
+                <!--<h5 class="modal-title">Please Login</h5>-->
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="padding-top: 2px">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="padding-bottom: 1px;">
+                <form>
+                    <div class="form-group">
+                        <label for="input_username">Username</label>
+                        <input type="text" class="form-control" id="input_username" aria-describedby="username_help"
+                               placeholder="Enter Your Username">
+                        <!--<small id="username_help" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+                    </div>
+                </form>
+                <form>
+                    <div class="form-group">
+                        <label for="input_password">Password</label>
+                        <input type="password" class="form-control" id="input_password" placeholder="Enter Password">
+                    </div>
+                </form>
+                <strong id="warning_message" class="form-text text-primary"></strong>
+            </div>
+            <div class="modal-footer" style="display: block">
+                <div style="display: block; margin-bottom:10px; margin-left: 0;margin-right: 0">
+                    <div style="width: 100%;margin-left: 0;margin-right: 0; padding-left: 0px;padding-right: 0px">
+                        <button id="login_submit_button" type="button" class="btn btn-primary" style="width: 100%">
+                            Login
+                        </button>
+                    </div>
+                </div>
+                <div style="display: block; margin-bottom:10px;margin-left: 0;margin-right: 0">
+                    <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+                    <div style=" margin: 0;display: inline-block ;width: 50%; margin:0; ">
+                        <button type="button" class="btn btn-secondary" style="width: 100%">Register As Tutor</button>
+
+                    </div>
+                    <div style="margin: 0;display: inline-block; width: 49%;margin:0;">
+                        <button type="button" class="btn btn-secondary" style="width: 100%">Register As Tutee</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $("#login_button").click(function () {
+        $("#login_modal").modal()
+        return false;
+    })
+
+    $("#login_submit_button").click(function () {
+
+        $("#warning_message").html("")
+        if ($("#input_username").val() == "") {
+            $("#warning_message").html("Please Input Your Username")
+            return false;
+        }
+        if ($("#input_password").val() == "") {
+            $("#warning_message").html("Please Input Your Password")
+            return false;
+        }
+
+        $.ajax({
+            url: "/api/login",
+            method: "POST",
+            dataType: "json",
+            data: {
+                username: $("#input_username").val(),
+                password: $("#input_password").val()
+            },
+            success: function (result) {
+                if (result && result.code && result.code > 0) {
+                    $.cookie("username", result.username)
+                    $.cookie("token", result.token)
+                    window.location.reload(true)
+                } else {
+                    $("#warning_message").html("Login Failed... " + result.info || "Unknown Error From Server")
+                }
+            },
+            error: function (xhr, status, error) {
+                $("#warning_message").html("Network Error... " + error.toString())
+
+            }
+        })
+
+        return false;
+    })
+
+    $("#personal_center_button").click(function () {
+        window.location.href="/personal-center"
+        return false;
+    })
+
+</script>
+
+<style>
+    .btn-primary {
+        cursor: pointer;
+    }
+</style>
