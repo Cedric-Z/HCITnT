@@ -6,7 +6,7 @@ router.get('/', function (req, res, next) {
     res.render('index', {title: 'Express'});
 });
 router.get('/welcome', function (req, res, next) {
-    res.render('welcome', {title: 'welcome'});
+    res.render('welcome', {title: 'welcome',username:req.cookies.username ||""});
 });
 
 
