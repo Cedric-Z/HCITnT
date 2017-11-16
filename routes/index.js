@@ -19,6 +19,14 @@ router.get('/search-what', function (req, res, next) {
     res.render('search-what', {title: 'search-what',username:req.cookies.username ||""});
 });
 
+router.get('/search-when', function (req, res, next) {
+    res.render('search-when', {title: 'search-when',username:req.cookies.username ||""});
+});
+
+router.get('/search-where', function (req, res, next) {
+    res.render('search-where', {title: 'search-where',username:req.cookies.username ||""});
+});
+
 router.get("/personal-center",function(req,res){
 
     if(req.cookies.username){
