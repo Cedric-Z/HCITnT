@@ -35,17 +35,21 @@ router.get('/chat', function (req, res, next) {
     res.render('chat', {title: 'chat',username:req.cookies.username ||""});
 });
 
-router.get("/personal-center",function(req,res){
-
-    if(req.cookies.username){
-        res.render("personal-center",{title:"personal-center",username:req.cookies.username,role:req.cookies.role})
-    }else{
-        res.redirect("/welcome")
-    }
-
-
-
-})
+router.get('/personal-center', function (req, res, next) {
+    res.render('personal-center', {title: 'personal-center',username:req.cookies.username ||""});
+});
+//
+// router.get("/personal-center",function(req,res){
+//
+//     if(req.cookies.username){
+//         res.render("personal-center",{title:"personal-center",username:req.cookies.username,role:req.cookies.role})
+//     }else{
+//         res.redirect("/welcome")
+//     }
+//
+//
+//
+// })
 
 
 module.exports = router;
