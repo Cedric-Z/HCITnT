@@ -27,6 +27,10 @@ router.get('/search-where', function (req, res, next) {
     res.render('search-where', {title: 'search-where',username:req.cookies.username ||""});
 });
 
+router.get('/result', function (req, res, next) {
+    res.render('result', {title: 'result',username:req.cookies.username ||""});
+});
+
 router.get("/personal-center",function(req,res){
 
     if(req.cookies.username){
