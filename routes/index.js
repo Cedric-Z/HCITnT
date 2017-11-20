@@ -31,6 +31,10 @@ router.get('/result', function (req, res, next) {
     res.render('result', {title: 'result',username:req.cookies.username ||""});
 });
 
+router.get('/chat', function (req, res, next) {
+    res.render('chat', {title: 'chat',username:req.cookies.username ||""});
+});
+
 router.get("/personal-center",function(req,res){
 
     if(req.cookies.username){
