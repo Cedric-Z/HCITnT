@@ -10,11 +10,6 @@
     <%- include('public/head');%>
 
     <title>Creative - Start Bootstrap Theme</title>
-    <!--  jQuery -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-
-    <!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
-    <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
 
     <!-- Bootstrap Date-Picker Plugin -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
@@ -28,17 +23,39 @@
 
 <%- include('public/navbar');%>
 <header class="masthead text-center text-white d-flex">
-    <div class="container my-auto">
-        <div class="row">
-            <div class="col-lg-10 mx-auto">
-                <h1 class="text-uppercase">
-                    <strong>Fuck You!</strong>
-                </h1>
+    <div class="container my-auto tnt-container">
+        <div class="row search-three-steps-nav">
+            <div class="col-lg-4">
+                <div class="step-wrapper step-done" id="search_what_button">
+                    <span class="step-icon step-icon-done">
+                        <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                    </span>
+                    <span class="step-name step-name-now">What</span>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="step-wrapper step-now" id="search_when_button">
+                    <span class="step-icon step-icon-next">
+                        <i class="fa fa-question-circle" aria-hidden="true"></i>
+                    </span>
+                    <span class="step-name step-name-now">When</span>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="step-wrapper step-next" id="search_where_button">
+                    <span class="step-icon step-icon-next">
+                        <i class="fa fa-question-circle" aria-hidden="true"></i>
+                    </span>
+                    <span class="step-name step-name-now">Where</span>
+                </div>
             </div>
         </div>
-        <div class="progress">
-            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="row">
+            <div class="date-wrapper" id="date_wrapper">
+
+            </div>
         </div>
+
         <div class="container" style="margin-top: 10px">
             <div class="col-md-4 col-sm-6 col-xs-12 " style="margin: auto">
                 <form method="post">
@@ -52,20 +69,20 @@
             </div>
         </div>
     </div>
-    </div>
+    <!--</div>-->
 </header>
 </body>
-<script>
-    $(document).ready(function(){
-        var date_input=$('input[name="date"]'); //our date input has the name "date"
-        var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-        var options={
-            format: 'mm/dd/yyyy',
-            container: container,
-            todayHighlight: true,
-            autoclose: true,
-        };
-        date_input.datepicker(options);
-    })
-</script>
+<!--<script>-->
+    <!--$(document).ready(function(){-->
+        <!--var date_input=$('input[name="date"]'); //our date input has the name "date"-->
+        <!--var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";-->
+        <!--var options={-->
+            <!--format: 'mm/dd/yyyy',-->
+            <!--container: container,-->
+            <!--todayHighlight: true,-->
+            <!--autoclose: true,-->
+        <!--};-->
+        <!--date_input.datepicker(options);-->
+    <!--})-->
+<!--</script>-->
 </html>

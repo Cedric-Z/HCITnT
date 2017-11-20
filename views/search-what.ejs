@@ -7,38 +7,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <%- include('public/head');%>
+    <%- include('public/head'); %>
 
     <title>Creative - Start Bootstrap Theme</title>
-
-
-
 
 
 </head>
 
 <body id="page-top">
 
-<%- include('public/navbar');%>
+<%- include('public/navbar'); %>
 <header class="masthead text-center text-white d-flex">
-    <div class="container my-auto">
+    <div class="container my-auto tnt-container">
+        <!--<div class="row">-->
+            <!--<div class="col-lg-10 mx-auto">-->
+                <!--<h1 class="text-uppercase">-->
+                    <!--<strong>Fuck You!</strong>-->
+                <!--</h1>-->
+            <!--</div>-->
+        <!--</div>-->
+
+
+        <div class="row search-three-steps-nav">
+            <div class="col-lg-4">
+                <div class="step-wrapper step-now" id="search_what_button">
+                    <span class="step-icon step-icon-now">
+                        <i class="fa fa-question-circle" aria-hidden="true"></i>
+                    </span>
+                    <span class="step-name step-name-now">What</span>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="step-wrapper step-next" id="search_when_button">
+                    <span class="step-icon step-icon-next">
+                        <i class="fa fa-question-circle" aria-hidden="true"></i>
+                    </span>
+                    <span class="step-name step-name-now">When</span>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="step-wrapper step-next" id="search_where_button">
+                    <span class="step-icon step-icon-next">
+                        <i class="fa fa-question-circle" aria-hidden="true"></i>
+                    </span>
+                    <span class="step-name step-name-now">Where</span>
+                </div>
+            </div>
+        </div>
+
+        <!--<div class="progress">-->
+            <!--<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 33%"-->
+                 <!--aria-valuenow="33" aria-valuemin="0" aria-valuemax="100"></div>-->
+        <!--</div>-->
         <div class="row">
-            <div class="col-lg-10 mx-auto">
-                <h1 class="text-uppercase">
-                    <strong>Fuck You!</strong>
-                </h1>
+            <div class="col-lg-12">
+                <div class="custominput-wrapper">
+                    <div class="input-group ">
+                        <input type="text" class="form-control what-input" placeholder="input the subject"
+                               aria-label="Text input with segmented button dropdown" id="what_input">
+                        <a class="btn btn-primary" id="what_next_button">Next</a>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="progress">
-            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 33%" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100"></div>
-        </div>
-        <div class="custominput">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="input the subject" aria-label="Text input with segmented button dropdown">
-                <a class="btn btn-primary" href="/search-when">Next</a>
-            </div>
-        </div>
-        </div>
+
     </div>
 </header>
 </body>

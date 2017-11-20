@@ -1,0 +1,70 @@
+.tnt-container {
+    margin-top: 100px !important;
+}
+
+.custominput-wrapper {
+    width: 50%;
+    margin: auto;
+    margin-top: 80px;
+}
+
+.what-input {
+    margin-right: 30px;
+}
+
+.step-wrapper {
+    height: 40px;
+    width: 70%;
+    border-radius: 20px;
+    background-color: #F05F40;
+    /*border-color: #F05F40;*/
+    margin: auto;
+    padding-top: 8px;
+    cursor: pointer;
+}
+
+.step-icon {
+    margin-right: 10px;
+}
+
+.step-icon-done {
+    color: #2fff5d;
+}
+
+.step-now {
+    border-color: white;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.step-next {
+    background-color: #6f2d1a;
+}
+
+.step-done {
+    background-color: #F05F40;
+}
+
+.search-three-steps-nav {
+    margin-bottom: 10px;
+    border-bottom: dotted white 1px;
+    padding-bottom: 30px;
+}
+.date-picker-button-wrapper{
+    display: inline-block;
+}
+
+.date-picker-btn-not-selected{
+    background-color: transparent;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #F05F40;
+}
+.date-picker-btn-selected{
+    background-color: #F05F40;
+    border-width: 0;
+}
+
+.date-wrapper{
+    margin: auto;
+}
