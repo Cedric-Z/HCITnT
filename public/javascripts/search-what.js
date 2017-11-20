@@ -29,13 +29,14 @@ $(document).delegate("#what_next_button", "click", function () {
     return false;
 });
 
-setTimeout(function(){
+
+$(document).ready(function(){
     var queryObj = getUrlVars()
     if(queryObj.what){
         $("#what_input").val(queryObj.what)
     }
+})
 
-},1000);
 
 
 

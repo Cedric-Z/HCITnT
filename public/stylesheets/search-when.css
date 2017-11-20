@@ -50,21 +50,55 @@
     border-bottom: dotted white 1px;
     padding-bottom: 30px;
 }
-.date-picker-button-wrapper{
+
+.date-picker-button-wrapper {
     display: inline-block;
 }
 
-.date-picker-btn-not-selected{
+.date-picker-btn-not-selected {
     background-color: transparent;
     border-width: 1px;
     border-style: solid;
     border-color: #F05F40;
 }
-.date-picker-btn-selected{
+
+.date-picker-btn-selected {
     background-color: #F05F40;
     border-width: 0;
 }
 
-.date-wrapper{
+.date-wrapper {
     margin: auto;
+
+}
+
+.time-wrapper {
+    display: inline-block;
+    margin: auto;
+    background-color: white;
+}
+
+.time-button {
+    display: inline-block;
+    margin: 0;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border-width: 0;
+    border-radius: 5px;
+    color: #F05F40;
+    cursor: pointer;
+    padding-top: 3px;
+}
+
+.time-button-chosen {
+    background-color: #F05F40;
+    color: white;
+    font-weight: 900;
+}
+
+.time-button-hover {
+    background-color: #ffab95 ;
+    color: white;
+    font-weight: 900;
 }
