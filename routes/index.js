@@ -38,6 +38,10 @@ router.get('/chat', function (req, res, next) {
 router.get('/personal-center', function (req, res, next) {
     res.render('personal-center', {title: 'personal-center',username:req.cookies.username ||""});
 });
+
+router.get('/register-tutee', function (req, res, next) {
+    res.render('register-tutee', {title: 'register-tutee',username:req.cookies.username ||""});
+});
 //
 // router.get("/personal-center",function(req,res){
 //
