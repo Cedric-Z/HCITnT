@@ -1,0 +1,81 @@
+.img-thumbnail {
+    height: 150px;
+    width: 150px;
+    border-radius: 75px;
+    object-fit: cover;
+}
+
+.tutor-name {
+    text-align: left;
+    font-size: 32px;
+    font-weight: 900;
+    color: black;
+}
+
+.tutor-info {
+    text-align: left;
+    /*font-size: 32px;*/
+    /*font-weight: 900;*/
+    color: #333333;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+
+}
+.tutor-info-bottom{
+
+    border-top: solid #cccccc 1px;
+    margin-top: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+}
+
+.rating-star-wrapper{
+    font-size: 20px;
+    color: #F05F40;
+}
+.rating-score{
+    color:black;
+}
+.rating-number{
+    color:#cccccc;
+}
+.major-wrapper{
+    color: black;
+    font-size: 20px;
+}
+.major-name{
+    color: #F05F40;
+    font-weight: 900;
+    font-size: 20px;
+}
+.clock-icon-wrapper{
+    color: black;
+    font-size: 20px;
+    margin-right: 10px;
+}
+.week-day-name{
+    background-color: #F05F40;
+    border-radius: 5px;
+    font-size: 14px;
+    font-family: "Microsoft YaHei", "simsun", "Helvetica Neue", Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.time-number{
+    color:#cccccc;
+    font-size: 20px;
+}
+
+
+.result-row-wrapper{
+    cursor: pointer;
+    padding-top: 10px;
+}
+
+.result-row-wrapper-hover{
+    background-color: #f5f5f5 !important;
+}
