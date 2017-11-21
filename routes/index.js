@@ -46,6 +46,10 @@ router.get('/register-tutee', function (req, res, next) {
 router.get('/register-tutor', function (req, res, next) {
     res.render('register-tutor', {title: 'register-tutor',username:req.cookies.username ||""});
 });
+
+router.get('/register-tutor-when', function (req, res, next) {
+    res.render('register-tutor-when', {title: 'register-tutor-when',username:req.cookies.username ||""});
+});
 //
 // router.get("/personal-center",function(req,res){
 //
