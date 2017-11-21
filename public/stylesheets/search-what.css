@@ -39,3 +39,36 @@
     border-bottom: dotted white 1px;
     padding-bottom: 30px;
 }
+
+
+#what_input{
+    display: block;
+    width: 80%;
+}
+.auto-complete-wrapper{
+    display: block;
+    position: relative;
+    left: 0;
+    top:0;
+    background-color: #00aaee;
+    width: 80%;
+}
+.auto-complete-item{
+    border-bottom: solid #fcfcfc 1px;
+    margin: 3px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    cursor: pointer;
+}
+.auto-complete-item-hover{
+    background-color: #f09373;
+}
+.input-wrapper{
+    display: inline;
+    width: 100%;
+}
+#what_next_button{
+    display: inline-block;
+    width: 100px;
+    height: 40px;
+}
