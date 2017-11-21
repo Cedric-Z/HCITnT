@@ -122,7 +122,7 @@ function getUrlVars() {
     var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
     for (var i = 0; i < hashes.length; i++) {
         hash = hashes[i].split('=');
-        vars[hash[0]] = hash[1];
+        vars[hash[0]] = decodeURIComponent(hash[1]);
     }
     return vars;
 }
@@ -155,7 +155,7 @@ $(document).ready(function(){
             setTimeout(function(){
                 var result = [];
                 for(var i = 0;i<courseList.length;i++){
-                    if(courseList[i].toLowerCase().indexOf(inputValue.toLowerCase())>0){
+                    if(courseList[i].toLowerCase().indexOf(inputValue.toLowerCase())>=0){
                         console.log(courseList[i])
                         result.push(courseList[i])
                     }

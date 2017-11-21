@@ -50,15 +50,21 @@
     position: relative;
     left: 0;
     top:0;
-    background-color: #00aaee;
+    background-color: #fcfcfc;
+    color: black;
     width: 80%;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 .auto-complete-item{
-    border-bottom: solid #fcfcfc 1px;
+    border-bottom: solid #cccccc 1px;
     margin: 3px;
     padding-bottom: 5px;
     padding-top: 5px;
     cursor: pointer;
+    text-align: left;
+    font-size: 12px;
+    /*padding-left: 10px;*/
 }
 .auto-complete-item-hover{
     background-color: #f09373;
