@@ -52,3 +52,5 @@ jspm_packages
 private/*.*
 certs/
 mochawesome-reports/
+
+db.sqlite
