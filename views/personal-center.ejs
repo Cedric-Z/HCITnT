@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <%- include('public/head');%>
+    <%- include('public/head'); %>
 
     <title>Creative - Start Bootstrap Theme</title>
 
 </head>
 
 <body>
-<%- include('public/navbar');%>
+<%- include('public/navbar'); %>
 
 <div class="view-body">
     <div class="view-sidebar">
@@ -69,22 +69,24 @@
                     <dl>
                         <dt class="padding-big-left lists-border-list clearfix">
                         <div class="title fl padding-big-top padding-big-bottom">
-                            <p>HI,ham</p>
+                            <p>HI, <span id="name_span">guest</span></p>
                         </div>
-                        <span class="fr icon-head" >
-										<img style="border-radius: 40px;width: 80px;height: 80px;" src="http://user.haidao.la/avatar.php?uid=1504&type=virtual&size=middle" alt="账户头像">
+                        <span class="fr icon-head">
+										<img id='user_avatar_img' style="border-radius: 40px;width: 80px;height: 80px;"
+                                             src="http://user.haidao.la/avatar.php?uid=1504&type=virtual&size=middle"
+                                             alt="user_avatar">
 									</span>
                         </dt>
                         <dd class="padding-big clearfix">
                             <p class="w75 fl">
                                 <i class="fl icon icon-mobile"></i>
 
-                                <span class="fl margin-left">Mobile：(1)234-567</span>
+                                <span class="fl margin-left">Phone：<span id="phone_span">(1)234-567</span></span>
                             </p>
                             <p class="w75 fl">
                                 <i class="fl icon icon-email"></i>
 
-                                <span class="fl margin-left">Email: ham@gwu.edu</span>
+                                <span class="fl margin-left">Email: <span id="email_span">ham@gwu.edu</span></span>
                             </p>
                         </dd>
                     </dl>
@@ -95,19 +97,73 @@
             <div class="account-product margin-big-top clearfix">
                 <div class="text-box-main padding-big fl mine-product">
                     <h2 class="h6 margin-big-bottom">My reservation</h2>
-                    <div class="mine-product-content clearfix">
-                        <ul class="w50 fl lists">
-                            <dl>
-                                <span class="fl icon-head" >
-										<img style="border-radius: 80px" src="http://user.haidao.la/avatar.php?uid=1504&type=virtual&size=middle" alt="账户头像">
-                                </span>
-                                <dt class="padding-big-left clearfix">
-                                <div class="title fl padding-big-top padding-big-bottom">
-                                    <p>HI,ham</p>
-                                    <p>HI,ham</p>
+                    <div class="appointment-wrapper">
+                        <div class="appointment-filter-wrapper">
+                            <ul class="nav nav-pills nav-fill">
+                                <li class="nav-item">
+                                    <a class="nav-link appointment-filter-button appointment-filter-button-active"
+                                       href="#">Success</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link appointment-filter-button" href="#">Pending</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link appointment-filter-button" href="#">Canceled</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="appointment-list-wrapper">
+                            <div class="appointment-list" id="success_appointment_list">
+                                <div class="appointment-element-wrapper">
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <img style="border-radius: 40px;width: 80px;height: 80px;"
+                                                 src="/images/default.jpg"
+                                                 alt="user_avatar">
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="appointment-title">Introduction to Mathematical Reasoning</div>
+                                            <div class="appointment-tutor"><i class="fa fa-user" aria-hidden="true"></i>
+                                                Cedric Zhang</div>
+                                            <div class="appointment-time"><i class="fa fa-clock-o" aria-hidden="true"></i>
+                                                2017-11-26 11:00</div>
+                                            <div class="appointment-place"><i class="fa fa-map-marker" aria-hidden="true"></i>
+                                                Library</div>
+                                        </div>
+
+                                        <div class="col-lg-2">
+                                            <button type="button" class="btn btn-danger">Cancel</button>
+                                        </div>
+                                    </div>
                                 </div>
-                            </dl>
-                        </ul>
+                                <div class="appointment-element-wrapper">
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <img style="border-radius: 40px;width: 80px;height: 80px;"
+                                                 src="/images/default.jpg"
+                                                 alt="user_avatar">
+                                        </div>
+                                        <div class="col-lg-8">
+                                            <div class="appointment-title">Introduction to Mathematical Reasoning</div>
+                                            <div class="appointment-tutor"><i class="fa fa-user" aria-hidden="true"></i>
+                                                Cedric Zhang</div>
+                                            <div class="appointment-time"><i class="fa fa-clock-o" aria-hidden="true"></i>
+                                                2017-11-26 11:00</div>
+                                            <div class="appointment-place"><i class="fa fa-map-marker" aria-hidden="true"></i>
+                                                Library</div>
+                                        </div>
+
+                                        <div class="col-lg-2">
+                                            <button type="button" class="btn btn-danger">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="appointment-list" id="pending_appointment_list"></div>
+                            <div class="appointment-list" id="canceled_appointment_list"></div>
+                            <div class="appointment-list" id="history_appointment_list"></div>
+                        </div>
+
                     </div>
                 </div>
                 <div class="text-box-main padding-big fl w25">

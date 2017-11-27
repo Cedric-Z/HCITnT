@@ -800,3 +800,47 @@ a.submit-order:hover{background:#40b2da;color:#fff}
 .offcial-table .tr-big-height{line-height:54px;}
 .offcial-table .tr-big-height .td{white-space:normal;}
 .offcial-table .tr-big-height .td-small{line-height:26px;text-align:center;}
+
+
+
+
+
+.appointment-filter-wrapper{
+    margin-bottom: 20px;
+}
+
+.appointment-filter-button:hover{
+    color:#F05F40;
+}
+.appointment-filter-button-active:hover{
+    color:white;
+}
+.appointment-filter-button-active{
+    background-color: #F05F40;
+    color:white;
+}
+
+.appointment-element-wrapper{
+    background-color: #f9f9f9;
+    margin-top:10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.appointment-title{
+    font-size: 20px;
+    font-weight: 500;
+}
+.appointment-tutor{
+    margin-top: 5px;
+    /*font-size: 13px;*/
+}
+.appointment-time{
+    margin-top: 5px;
+    /*font-size: 13px;*/
+}
+.appointment-place{
+    margin-top: 5px;
+    /*font-size: 13px;*/
+}

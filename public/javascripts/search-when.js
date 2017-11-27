@@ -21,13 +21,13 @@ var weekdayName = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 
 
 $(document).ready(function () {
-    var doms = []
+    var doms = [];
 
     for (var i = 0; i < 7; i++) {
         var date = new Date(new Date().getTime() + i * 24 * 60 * 60 * 1000)
         var str = "<div class='date-picker-button-wrapper'><a class='btn date-picker-btn btn-primary " +
             (i == 0 ? "date-picker-btn-not-selected date-picker-btn-selected " : " date-picker-btn-not-selected") +
-            "' >" + date.getMonth() + "/" + (date.getDate() + 1) + " " + weekdayName[date.getDay()] + "</a></div>"
+            "' >" + (date.getMonth() + 1) + "/" + (date.getDate()) + " " + weekdayName[date.getDay()] + "</a></div>"
         doms.push(str)
     }
     // console.log()
