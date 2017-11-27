@@ -844,3 +844,11 @@ a.submit-order:hover{background:#40b2da;color:#fff}
     margin-top: 5px;
     /*font-size: 13px;*/
 }
+.appointment-info{
+    margin-top: 5px;
+}
+.appointment-element-button{
+    width: 100%;
+    margin-top: 10px;
+    cursor: pointer;
+}

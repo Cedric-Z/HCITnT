@@ -102,13 +102,16 @@
                             <ul class="nav nav-pills nav-fill">
                                 <li class="nav-item">
                                     <a class="nav-link appointment-filter-button appointment-filter-button-active"
-                                       href="#">Success</a>
+                                       href="#" id="appointment_filter_success_button">Success</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link appointment-filter-button" href="#">Pending</a>
+                                    <a class="nav-link appointment-filter-button" href="#" id="appointment_filter_pending_button">Pending</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link appointment-filter-button" href="#">Canceled</a>
+                                    <a class="nav-link appointment-filter-button" href="#" id="appointment_filter_canceled_button">Canceled</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link appointment-filter-button" href="#" id="appointment_filter_history_button">History</a>
                                 </li>
                             </ul>
                         </div>
@@ -124,11 +127,16 @@
                                         <div class="col-lg-8">
                                             <div class="appointment-title">Introduction to Mathematical Reasoning</div>
                                             <div class="appointment-tutor"><i class="fa fa-user" aria-hidden="true"></i>
-                                                Cedric Zhang</div>
-                                            <div class="appointment-time"><i class="fa fa-clock-o" aria-hidden="true"></i>
-                                                2017-11-26 11:00</div>
-                                            <div class="appointment-place"><i class="fa fa-map-marker" aria-hidden="true"></i>
-                                                Library</div>
+                                                Cedric Zhang
+                                            </div>
+                                            <div class="appointment-time"><i class="fa fa-clock-o"
+                                                                             aria-hidden="true"></i>
+                                                2017-11-26 11:00
+                                            </div>
+                                            <div class="appointment-place"><i class="fa fa-map-marker"
+                                                                              aria-hidden="true"></i>
+                                                Library
+                                            </div>
                                         </div>
 
                                         <div class="col-lg-2">
@@ -146,11 +154,16 @@
                                         <div class="col-lg-8">
                                             <div class="appointment-title">Introduction to Mathematical Reasoning</div>
                                             <div class="appointment-tutor"><i class="fa fa-user" aria-hidden="true"></i>
-                                                Cedric Zhang</div>
-                                            <div class="appointment-time"><i class="fa fa-clock-o" aria-hidden="true"></i>
-                                                2017-11-26 11:00</div>
-                                            <div class="appointment-place"><i class="fa fa-map-marker" aria-hidden="true"></i>
-                                                Library</div>
+                                                Cedric Zhang
+                                            </div>
+                                            <div class="appointment-time"><i class="fa fa-clock-o"
+                                                                             aria-hidden="true"></i>
+                                                2017-11-26 11:00
+                                            </div>
+                                            <div class="appointment-place"><i class="fa fa-map-marker"
+                                                                              aria-hidden="true"></i>
+                                                Library
+                                            </div>
                                         </div>
 
                                         <div class="col-lg-2">
@@ -159,9 +172,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="appointment-list" id="pending_appointment_list"></div>
-                            <div class="appointment-list" id="canceled_appointment_list"></div>
-                            <div class="appointment-list" id="history_appointment_list"></div>
+                            <div class="appointment-list" id="pending_appointment_list" style="display: none"></div>
+                            <div class="appointment-list" id="canceled_appointment_list" style="display: none"></div>
+                            <div class="appointment-list" id="history_appointment_list" style="display: none"></div>
                         </div>
 
                     </div>

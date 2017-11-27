@@ -102,39 +102,50 @@ router.post('/get-personal-info', function (req, res) {
     if (req.cookies.username) {
 
         if (req.cookies.isTutor && req.cookies.isTutor == 'true' || req.body.isTutor) {    // the user is tutor
-            console.log("TUTOR!!!!!!!")
-            console.log(req.cookies.isTutor)
-            console.log(req.body.isTutor)
-            Appointment.findAll({
+            User.findOne({
                 where: {
-                    tutor: req.cookies.username
-                }, include: [{model: User, as: 'Tutee'}]
-            }).then(function (appointments) {
-                var result = {
+                    username: req.cookies.username,
+                },
+                include: [{
+                    model: Appointment, as: 'Teaching', include:[{model:User, as:"Tutee"}]
+
+                }]
+            }).then(function (result) {
+                result = JSON.parse(JSON.stringify(result));
+
+                var _result = {
                     pending: [],
                     success: [],
-                    canceled: []
+                    canceled: [],
+                    history:[]
                 };
-                for (var i = 0; i < appointments.length; i++) {
-                    if (appointments[i].status == 5) {    // success
-                        result.success.push(appointments[i])
-                    } else if (appointments[i].status == 1) {   // waiting for tutor to accept
-                        result.pending.push(appointments[i])
+                for (var i = 0; i < result.Teaching.length; i++) {
+
+                    if(new Date(result.Teaching[i].datetime).getTime() <new Date().getTime() ){
+                        _result.history.push(result.Teaching[i])
+                    }
+
+                    else if (result.Teaching[i].status == 5) {    // success
+                        _result.success.push(result.Teaching[i])
+                    } else if (result.Teaching[i].status == 1) {   // waiting for tutor to accept
+                        _result.pending.push(result.Teaching[i])
                     } else { // 2: tutor denied, 3: tutor canceled, 4: tutee canceled
-                        result.canceled.push(appointments[i])
+                        _result.canceled.push(result.Teaching[i])
                     }
                 }
-                res.json({
-                    code: 200,
-                    data: result
-                })
+                result.Teaching = _result;
+
+                res.json({code: 255, data: result})
 
             }).catch(function (error) {
                 res.json({
                     code: -11,
                     info: "Server Error. " + error.toString()
                 })
-            })
+            });
+
+
+            return;
 
         } else {  // the user is tutee
 
@@ -147,15 +158,21 @@ router.post('/get-personal-info', function (req, res) {
 
                 }]
             }).then(function (result) {
-                result = JSON.parse(JSON.stringify(result))
+                result = JSON.parse(JSON.stringify(result));
 
                 var _result = {
                     pending: [],
                     success: [],
-                    canceled: []
+                    canceled: [],
+                    history:[]
                 };
                 for (var i = 0; i < result.Learning.length; i++) {
-                    if (result.Learning[i].status == 5) {    // success
+
+                    if(new Date(result.Learning[i].datetime).getTime() <new Date().getTime() ){
+                        _result.history.push(result.Learning[i])
+                    }
+
+                    else if (result.Learning[i].status == 5) {    // success
                         _result.success.push(result.Learning[i])
                     } else if (result.Learning[i].status == 1) {   // waiting for tutor to accept
                         _result.pending.push(result.Learning[i])
