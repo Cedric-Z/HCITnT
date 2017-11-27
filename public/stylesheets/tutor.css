@@ -13,10 +13,19 @@
 }
 
 .tutor-title {
-    padding-left: 20px;
+     padding-left: 20px;
+     text-align: left;
+     font-size: 20px;
+     font-weight: 200;
+     color: black;
+     min-width: 300px;
+ }
+
+.inner-title {
+    padding-left: 0px;
     text-align: left;
     font-size: 20px;
-    font-weight: 200;
+    font-weight: 600;
     color: black;
     min-width: 300px;
 }
