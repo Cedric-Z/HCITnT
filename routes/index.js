@@ -47,6 +47,14 @@ router.get('/chat', function (req, res, next) {
     res.render('chat', {title: 'chat', username: req.cookies.username || "", name: req.cookies.name || ""});
 });
 
+router.get('/tutor', function (req, res, next) {
+    res.render('tutor', {
+        title: 'tutor',
+        username: req.cookies.username || "",
+        name: req.cookies.name || ""
+    });
+});
+
 router.get('/personal-center', function (req, res, next) {
     res.render('personal-center', {
         title: 'personal-center',
