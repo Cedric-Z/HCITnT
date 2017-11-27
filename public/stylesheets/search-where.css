@@ -4,8 +4,8 @@
 
 .custominput-wrapper {
     width: 50%;
-    margin:auto;
-    margin-top: 80px;
+    margin-left:400px;
+    margin-top: 20px;
 }
 .what-input{
     margin-right: 30px;
@@ -38,4 +38,43 @@
     margin-bottom:10px;
     border-bottom: dotted white 1px;
     padding-bottom: 30px;
+}
+
+
+#what_input{
+    display: block;
+    width: 80%;
+}
+.auto-complete-wrapper{
+    display: block;
+    position: relative;
+    left: 0;
+    top:0;
+    background-color: #fcfcfc;
+    color: black;
+    width: 80%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.auto-complete-item{
+    border-bottom: solid #cccccc 1px;
+    margin: 3px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 12px;
+    /*padding-left: 10px;*/
+}
+.auto-complete-item-hover{
+    background-color: #f09373;
+}
+.input-wrapper{
+    display: inline;
+    width: 50%;
+}
+#what_next_button{
+    display: inline-block;
+    width: 100px;
+    height: 40px;
 }

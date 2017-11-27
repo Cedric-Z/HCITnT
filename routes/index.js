@@ -78,6 +78,15 @@ router.get('/register-tutor-when', function (req, res, next) {
         name: req.cookies.name || ""
     });
 });
+
+
+router.get('/register-tutor-personal-profile', function (req, res, next) {
+    res.render('register-tutor-personal-profile', {
+        title: 'register-tutor-personal-profile',
+        username: req.cookies.username || "",
+        name: req.cookies.name || ""
+    });
+});
 //
 // router.get("/personal-center",function(req,res){
 //
