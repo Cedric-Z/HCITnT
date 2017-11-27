@@ -3,26 +3,231 @@
  */
 var express = require('express');
 var router = express.Router();
+var crypto = require("crypto");
+
+
+var User = require("../modules/db").User;
+var Appointment = require("../modules/db").Appointment
+
 
 /* GET home page. */
 router.post('/login', function (req, res, next) {
     if (req.body && req.body.username && req.body.password) {
-        res.json({
-            code:200,
-            username: req.body.username
+
+        User.findOne({
+            where: {
+                username: req.body.username
+            }
+        }).then(function (u) {
+            if (u && u.password == crypto.createHash('md5').update(req.body.password).digest('hex')) {
+                res.json({
+                    code: 200,
+                    username: req.body.username,
+                    isTutor: u.isTutor,
+                    name: u.firstname + " " + u.lastname
+                })
+            } else {
+                res.json({
+                    code: -100,
+                    info: "User not exist or wrong password"
+
+                })
+            }
+        }).catch(function (error) {
+            res.json({
+                code: -11,
+                info: "Server Error. " + error.toString()
+
+            })
         })
+
+
     }
-    else{
+    else {
         res.json({
-            code:-10,
-            info:"Invalid Input"
+            code: -10,
+            info: "Invalid Input"
 
         })
     }
 
 });
-router.get('/register', function (req, res, next) {
-    res.json({})
+router.post('/register', function (req, res, next) {
+    if (req.body && req.body.username && req.body.password) {
+        User.findOne({
+            where: {
+                username: req.body.username
+            }
+        })
+            .then(function (u) {
+                if (u) {  // user already exist
+                    res.json({
+                        code: -201,
+                        info: "User Already Exists. Please Try Another Username"
+                    })
+                } else {
+                    User.create({
+                        username: req.body.username,
+                        password: crypto.createHash('md5').update(req.body.password).digest('hex'),
+                        isTutor: req.body.isTutor || false,
+                        // FIXME 将Firstname Lastname Phone Zipcode 加入数据库
+                        // fixme 对于Tutor,将其他信息加入info
+                    }).then(function (u) {
+                        res.json({
+                            code: 200,
+                            username: req.body.username,
+                            isTutor: u.isTutor,
+                            name: u.firstname + " " + u.lastname
+                        })
+                    })
+                }
+            })
+            .catch(function (error) {
+                res.json({
+                    code: -11,
+                    info: "Server Error. " + error.toString()
+                })
+            })
+
+    } else {
+        res.json({
+            code: -10,
+            info: "Invalid Input"
+        })
+    }
+});
+
+
+router.post('/get-personal-info', function (req, res) {
+    if (req.cookies.username) {
+
+        if (req.cookies.isTutor && req.cookies.isTutor == 'true' || req.body.isTutor) {    // the user is tutor
+            console.log("TUTOR!!!!!!!")
+            console.log(req.cookies.isTutor)
+            console.log(req.body.isTutor)
+            Appointment.findAll({
+                where: {
+                    tutor: req.cookies.username
+                }, include: [{model: User, as: 'Tutee'}]
+            }).then(function (appointments) {
+                var result = {
+                    pending: [],
+                    success: [],
+                    canceled: []
+                };
+                for (var i = 0; i < appointments.length; i++) {
+                    if (appointments[i].status == 5) {    // success
+                        result.success.push(appointments[i])
+                    } else if (appointments[i].status == 1) {   // waiting for tutor to accept
+                        result.pending.push(appointments[i])
+                    } else { // 2: tutor denied, 3: tutor canceled, 4: tutee canceled
+                        result.canceled.push(appointments[i])
+                    }
+                }
+                res.json({
+                    code: 200,
+                    data: result
+                })
+
+            }).catch(function (error) {
+                res.json({
+                    code: -11,
+                    info: "Server Error. " + error.toString()
+                })
+            })
+
+        } else {  // the user is tutee
+
+            User.findOne({
+                where: {
+                    username: req.cookies.username,
+                },
+                include: [{
+                    model: Appointment, as: 'Learning', include:[{model:User, as:"Tutor"}]
+
+                }]
+            }).then(function (result) {
+                result = JSON.parse(JSON.stringify(result))
+
+                var _result = {
+                    pending: [],
+                    success: [],
+                    canceled: []
+                };
+                for (var i = 0; i < result.Learning.length; i++) {
+                    if (result.Learning[i].status == 5) {    // success
+                        _result.success.push(result.Learning[i])
+                    } else if (result.Learning[i].status == 1) {   // waiting for tutor to accept
+                        _result.pending.push(result.Learning[i])
+                    } else { // 2: tutor denied, 3: tutor canceled, 4: tutee canceled
+                        _result.canceled.push(result.Learning[i])
+                    }
+                }
+                result.Learning = _result;
+
+                res.json({code: 255, data: result})
+
+            }).catch(function (error) {
+                res.json({
+                    code: -11,
+                    info: "Server Error. " + error.toString()
+                })
+            });
+
+
+            return;
+
+
+            Appointment.findAll({
+                where: {
+                    tutee: req.cookies.username
+                },
+                // include: [{
+                //     model: User, as: 'Tutor'
+                // }]
+            }).then(function (appointments) {
+                var result = {
+                    pending: [],
+                    success: [],
+                    canceled: []
+                };
+                for (var i = 0; i < appointments.length; i++) {
+                    if (appointments[i].status == 5) {    // success
+                        result.success.push(appointments[i])
+                    } else if (appointments[i].status == 1) {   // waiting for tutor to accept
+                        result.pending.push(appointments[i])
+                    } else { // 2: tutor denied, 3: tutor canceled, 4: tutee canceled
+                        result.canceled.push(appointments[i])
+                    }
+                }
+                res.json({
+                    code: 200,
+                    data: result
+                })
+
+            }).catch(function (error) {
+                res.json({
+                    code: -11,
+                    info: "Server Error. " + error.toString()
+                })
+            })
+        }
+
+    } else {
+        res.json({
+            code: -11,
+            info: "Please Login"
+        })
+    }
+});
+
+
+router.post('/make-appointment', function (req, res) {
+
+});
+
+router.post('/change-appointment', function (req, res) {
+
 });
 
 
