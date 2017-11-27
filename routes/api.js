@@ -107,7 +107,7 @@ router.post('/get-personal-info', function (req, res) {
                     username: req.cookies.username,
                 },
                 include: [{
-                    model: Appointment, as: 'Teaching', include:[{model:User, as:"Tutee"}]
+                    model: Appointment, as: 'Teaching', include: [{model: User, as: "Tutee"}]
 
                 }]
             }).then(function (result) {
@@ -117,11 +117,11 @@ router.post('/get-personal-info', function (req, res) {
                     pending: [],
                     success: [],
                     canceled: [],
-                    history:[]
+                    history: []
                 };
                 for (var i = 0; i < result.Teaching.length; i++) {
 
-                    if(new Date(result.Teaching[i].datetime).getTime() <new Date().getTime() ){
+                    if (new Date(result.Teaching[i].datetime).getTime() < new Date().getTime()) {
                         _result.history.push(result.Teaching[i])
                     }
 
@@ -154,7 +154,7 @@ router.post('/get-personal-info', function (req, res) {
                     username: req.cookies.username,
                 },
                 include: [{
-                    model: Appointment, as: 'Learning', include:[{model:User, as:"Tutor"}]
+                    model: Appointment, as: 'Learning', include: [{model: User, as: "Tutor"}]
 
                 }]
             }).then(function (result) {
@@ -164,11 +164,11 @@ router.post('/get-personal-info', function (req, res) {
                     pending: [],
                     success: [],
                     canceled: [],
-                    history:[]
+                    history: []
                 };
                 for (var i = 0; i < result.Learning.length; i++) {
 
-                    if(new Date(result.Learning[i].datetime).getTime() <new Date().getTime() ){
+                    if (new Date(result.Learning[i].datetime).getTime() < new Date().getTime()) {
                         _result.history.push(result.Learning[i])
                     }
 
@@ -244,6 +244,39 @@ router.post('/make-appointment', function (req, res) {
 });
 
 router.post('/change-appointment', function (req, res) {
+
+    if (req.body.appointmentId && req.body.appointmentStatus) {
+        Appointment.findOne({
+            where: {
+                id: req.body.appointmentId
+            }
+        }).then(function (appointment) {
+            if (appointment) {
+                appointment.status = req.body.appointmentStatus;
+                appointment.save().then(function () {
+                    res.json({
+                        code: 200
+                    })
+                })
+
+            } else {
+                res.json({
+                    code: -301,
+                    info: "Reservation Id Does not Exist"
+                })
+            }
+        }).catch(function (error) {
+            res.json({
+                code: -302,
+                info: error.toString()
+            })
+        })
+    } else {
+        res.json({
+            code: -10,
+            info: "Invalid Input"
+        })
+    }
 
 });
 

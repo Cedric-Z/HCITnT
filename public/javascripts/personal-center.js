@@ -5,7 +5,7 @@ function generateAppointmentElementString(appointment, isTutor) {
 
 
     var result = ""
-    result += ('<div class="appointment-element-wrapper"><div class="row"><div class="col-lg-2"><img style="border-radius: 40px;width: 80px;height: 80px;" src="');
+    result += ('<div class="appointment-element-wrapper" data-appointment-id="' + appointment.id + '"><div class="row"><div class="col-lg-2"><img style="border-radius: 40px;width: 80px;height: 80px;" src="');
     // avatar img src
     if (isTutor) {
         result += (appointment.Tutee && appointment.Tutee.info && appointment.Tutee.info.avatar || '/images/default.jpg')
@@ -19,40 +19,40 @@ function generateAppointmentElementString(appointment, isTutor) {
 
     if (appointment.status == 1) {
         if (isTutor) {
-            result += '<div class="appointment-info" style="color: orangered"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>' + 'The Reservation is Waiting for You to Accept' + '</div>'
+            result += '<div class="appointment-info" style="color: orangered"><i class="fa appointment-element-icon fa-exclamation-circle" aria-hidden="true"></i>' + 'The Reservation is Waiting for You to Accept' + '</div>'
         } else {
-            result += '<div class="appointment-info" style="color: orangered"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>' + 'The Reservation is Waiting for the Tutor to Accept' + '</div>'
+            result += '<div class="appointment-info" style="color: orangered"><i class="fa appointment-element-icon fa-exclamation-circle" aria-hidden="true"></i>' + 'The Reservation is Waiting for the Tutor to Accept' + '</div>'
         }
     }
     else if (appointment.status == 2) {
         if (isTutor) {
-            result += '<div class="appointment-info" style="color: orangered"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>' + 'You Rejected the Reservation' + '</div>'
+            result += '<div class="appointment-info" style="color: orangered"><i class="fa appointment-element-icon fa-exclamation-circle" aria-hidden="true"></i>' + 'You Rejected the Reservation' + '</div>'
         } else {
-            result += '<div class="appointment-info" style="color: orangered"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>' + 'The Tutor Rejected the Reservation' + '</div>'
+            result += '<div class="appointment-info" style="color: orangered"><i class="fa appointment-element-icon fa-exclamation-circle" aria-hidden="true"></i>' + 'The Tutor Rejected the Reservation' + '</div>'
         }
     } else if (appointment.status == 3) {
         if (isTutor) {
-            result += '<div class="appointment-info" style="color: darkslategrey"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>' + 'You Canceled the Reservation' + '</div>'
+            result += '<div class="appointment-info" style="color: darkslategrey"><i class="fa appointment-element-icon fa-exclamation-circle" aria-hidden="true"></i>' + 'You Canceled the Reservation' + '</div>'
         } else {
-            result += '<div class="appointment-info" style="color: darkslategrey"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>' + 'The Tutor Canceled the Reservation' + '</div>'
+            result += '<div class="appointment-info" style="color: darkslategrey"><i class="fa appointment-element-icon fa-exclamation-circle" aria-hidden="true"></i>' + 'The Tutor Canceled the Reservation' + '</div>'
         }
     } else if (appointment.status == 4) {
         if (isTutor) {
-            result += '<div class="appointment-info" style="color: darkslategrey"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>' + 'The Tutee Canceled the Reservation' + '</div>'
+            result += '<div class="appointment-info" style="color: darkslategrey"><i class="fa appointment-element-icon fa-exclamation-circle" aria-hidden="true"></i>' + 'The Tutee Canceled the Reservation' + '</div>'
         } else {
-            result += '<div class="appointment-info" style="color: darkslategrey"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>' + 'You Canceled the Reservation' + '</div>'
+            result += '<div class="appointment-info" style="color: darkslategrey"><i class="fa appointment-element-icon fa-exclamation-circle" aria-hidden="true"></i>' + 'You Canceled the Reservation' + '</div>'
         }
     }
 
     if (isTutor) {
-        result += '<div class="appointment-tutor"><i class="fa fa-user" aria-hidden="true"></i>' + ((appointment.Tutee.firstname || 'Unknown') + ' ' + (appointment.Tutee.lastname || 'Unknown')) + '</div>'
+        result += '<div class="appointment-tutor"><i class="fa appointment-element-icon fa-user" aria-hidden="true"></i>' + ((appointment.Tutee.firstname || 'Unknown') + ' ' + (appointment.Tutee.lastname || 'Unknown')) + '</div>'
     } else {
-        result += '<div class="appointment-tutor"><i class="fa fa-user" aria-hidden="true"></i>' + ((appointment.Tutor.firstname || 'Unknown') + ' ' + (appointment.Tutor.lastname || 'Unknown')) + '</div>'
+        result += '<div class="appointment-tutor"><i class="fa appointment-element-icon fa-user" aria-hidden="true"></i>' + ((appointment.Tutor.firstname || 'Unknown') + ' ' + (appointment.Tutor.lastname || 'Unknown')) + '</div>'
     }
 
-    result += (('<div class="appointment-time"><i class="fa fa-clock-o" aria-hidden="true"></i>') + (appointment.datetime ? new Date(appointment.datetime).toLocaleString() : 'Unknown') + ' </div>');
+    result += (('<div class="appointment-time"><i class="fa appointment-element-icon fa-clock-o" aria-hidden="true"></i>') + (appointment.datetime ? new Date(appointment.datetime).toLocaleString() : 'Unknown') + ' </div>');
 
-    result += ('<div class="appointment-place"><i class="fa fa-map-marker" aria-hidden="true"></i> ' + ((appointment && appointment.info && appointment.info.place) || "Unknown Place") + '</div>')
+    result += ('<div class="appointment-place"><i class="fa appointment-element-icon fa-map-marker" aria-hidden="true"></i> ' + ((appointment && appointment.info && appointment.info.place) || "Unknown Place") + '</div>')
 
     result += '</div><div class="col-lg-2">';
 
@@ -131,6 +131,35 @@ $(document).ready(function () {
         }
     });
 
+    $(document).delegate('.appointment-element-button', 'click', function () {
+        var appointmentId = $(this).parents(".appointment-element-wrapper").attr("data-appointment-id");
+        var newStatus = $(this).attr("data-status");
+
+        if (newStatus == 'rate') {
+
+        } else {
+            $.ajax({
+                url: "/api/change-appointment",
+                method: "POST",
+                dataType: "json",
+                data: {
+                    appointmentId: appointmentId,
+                    appointmentStatus: newStatus
+                },
+                success: function (result) {
+                    if (result.code > 0) {
+                        alert("success")
+                        location.reload()
+                    } else {
+                        alert("Failed. " + result.info)
+                    }
+                }
+
+
+            })
+        }
+
+    })
 
     $.ajax({
         url: "/api/get-personal-info",
@@ -148,7 +177,7 @@ $(document).ready(function () {
                     if (l.success.length) {
                         var _html = ""
                         for (var i = 0; i < l.success.length; i++) {
-                            _html += generateAppointmentElementString(l.success[i],false)
+                            _html += generateAppointmentElementString(l.success[i], false)
                         }
                         $("#success_appointment_list").html(_html)
 
@@ -158,7 +187,7 @@ $(document).ready(function () {
                     if (l.pending.length) {
                         var _html = ""
                         for (var i = 0; i < l.pending.length; i++) {
-                            _html += generateAppointmentElementString(l.pending[i],false)
+                            _html += generateAppointmentElementString(l.pending[i], false)
                         }
                         $("#pending_appointment_list").html(_html)
 
@@ -168,7 +197,7 @@ $(document).ready(function () {
                     if (l.canceled.length) {
                         var _html = ""
                         for (var i = 0; i < l.canceled.length; i++) {
-                            _html += generateAppointmentElementString(l.canceled[i],false)
+                            _html += generateAppointmentElementString(l.canceled[i], false)
                         }
                         $("#canceled_appointment_list").html(_html)
 
@@ -178,7 +207,7 @@ $(document).ready(function () {
                     if (l.history.length) {
                         var _html = ""
                         for (var i = 0; i < l.history.length; i++) {
-                            _html += generateAppointmentElementString(l.history[i],false)
+                            _html += generateAppointmentElementString(l.history[i], false)
                         }
                         $("#history_appointment_list").html(_html)
 
@@ -191,7 +220,7 @@ $(document).ready(function () {
                     if (l.success.length) {
                         var _html = ""
                         for (var i = 0; i < l.success.length; i++) {
-                            _html += generateAppointmentElementString(l.success[i],true)
+                            _html += generateAppointmentElementString(l.success[i], true)
                         }
                         $("#success_appointment_list").html(_html)
 
@@ -201,7 +230,7 @@ $(document).ready(function () {
                     if (l.pending.length) {
                         var _html = ""
                         for (var i = 0; i < l.pending.length; i++) {
-                            _html += generateAppointmentElementString(l.pending[i],true)
+                            _html += generateAppointmentElementString(l.pending[i], true)
                         }
                         $("#pending_appointment_list").html(_html)
 
@@ -211,7 +240,7 @@ $(document).ready(function () {
                     if (l.canceled.length) {
                         var _html = ""
                         for (var i = 0; i < l.canceled.length; i++) {
-                            _html += generateAppointmentElementString(l.canceled[i],true)
+                            _html += generateAppointmentElementString(l.canceled[i], true)
                         }
                         $("#canceled_appointment_list").html(_html)
 
@@ -221,7 +250,7 @@ $(document).ready(function () {
                     if (l.history.length) {
                         var _html = ""
                         for (var i = 0; i < l.history.length; i++) {
-                            _html += generateAppointmentElementString(l.history[i],true)
+                            _html += generateAppointmentElementString(l.history[i], true)
                         }
                         $("#history_appointment_list").html(_html)
 
