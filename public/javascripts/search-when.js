@@ -25,7 +25,7 @@ $(document).ready(function () {
 
     for (var i = 0; i < 7; i++) {
         var date = new Date(new Date().getTime() + i * 24 * 60 * 60 * 1000)
-        var str = "<div class='date-picker-button-wrapper'><a class='btn date-picker-btn btn-primary " +
+        var str = "<div class='date-picker-button-wrapper'><a data-date='"+new Date(new Date().getTime() + i * 24 * 60 * 60 * 1000).getTime() +"' class='btn date-picker-btn btn-primary " +
             (i == 0 ? "date-picker-btn-not-selected date-picker-btn-selected " : " date-picker-btn-not-selected") +
             "' >" + (date.getMonth() + 1) + "/" + (date.getDate()) + " " + weekdayName[date.getDay()] + "</a></div>"
         doms.push(str)
@@ -42,17 +42,28 @@ $(document).ready(function () {
     })
 
     $(".time-button").click(function () {
-        if ($(this).hasClass("time-button-chosen")) {
-            $(this).removeClass("time-button-chosen")
-        }
-        else {
-            $(this).addClass("time-button-chosen")
-        }
+        $(".time-button").removeClass("time-button-chosen")
+        $(this).addClass("time-button-chosen")
+        // if ($(this).hasClass("time-button-chosen")) {
+        //     $(this).removeClass("time-button-chosen")
+        // }
+        // else {
+        //     $(this).addClass("time-button-chosen")
+        // }
     })
 
     $("#back_button").click(function(){
         var queryObj = getUrlVars();
         window.location.href = "/search-what?" + $.param(queryObj)
+    })
+
+    $("#next_button").click(function(){
+        var queryObj = getUrlVars();
+        queryObj.date = $(".date-picker-btn-selected").attr("data-date")
+        queryObj.hour = $(".time-button-chosen").attr('data-hour')
+        window.location.href = "/search-where?" + $.param(queryObj)
+        return false;
+        // queryObj.
     })
 });
 

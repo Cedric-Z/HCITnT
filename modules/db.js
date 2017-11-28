@@ -57,7 +57,7 @@ User.hasMany(Appointment,{
 
 //  SYNC SCHEMA
 sequelize
-    .sync({force: true})
+    .sync({force: false})
     .then(function (err) {
         console.log('DB sync completed');
     }, function (err) {

@@ -70,11 +70,11 @@ router.post('/register', function (req, res, next) {
                         username: req.body.username,
                         password: crypto.createHash('md5').update(req.body.password).digest('hex'),
                         isTutor: req.body.isTutor || false,
-                        phone:req.body.phone||"",
-                        zip:req.body.zip||"",
-                        firstname:req.body.firstname,
-                        lastname:req.body.lastname,
-                        info:'{"avatar":"/images/default.jpg"}'
+                        phone: req.body.phone || "",
+                        zip: req.body.zip || "",
+                        firstname: req.body.firstname,
+                        lastname: req.body.lastname,
+                        info: '{"avatar":"/images/default.jpg"}'
 
                         // fixme 对于Tutor,将其他信息加入info
                     }).then(function (u) {
@@ -101,6 +101,22 @@ router.post('/register', function (req, res, next) {
         })
     }
 });
+
+router.post('/search', function (req, res) {
+
+    User.findAll({
+        where: {
+            isTutor: 1
+        }
+    }).then(function (result) {
+        res.json({
+            code: 200,
+            data: result
+        })
+    })
+
+
+})
 
 
 router.post('/get-personal-info', function (req, res) {
@@ -199,40 +215,6 @@ router.post('/get-personal-info', function (req, res) {
 
             return;
 
-
-            Appointment.findAll({
-                where: {
-                    tutee: req.cookies.username
-                },
-                // include: [{
-                //     model: User, as: 'Tutor'
-                // }]
-            }).then(function (appointments) {
-                var result = {
-                    pending: [],
-                    success: [],
-                    canceled: []
-                };
-                for (var i = 0; i < appointments.length; i++) {
-                    if (appointments[i].status == 5) {    // success
-                        result.success.push(appointments[i])
-                    } else if (appointments[i].status == 1) {   // waiting for tutor to accept
-                        result.pending.push(appointments[i])
-                    } else { // 2: tutor denied, 3: tutor canceled, 4: tutee canceled
-                        result.canceled.push(appointments[i])
-                    }
-                }
-                res.json({
-                    code: 200,
-                    data: result
-                })
-
-            }).catch(function (error) {
-                res.json({
-                    code: -11,
-                    info: "Server Error. " + error.toString()
-                })
-            })
         }
 
     } else {
@@ -245,7 +227,19 @@ router.post('/get-personal-info', function (req, res) {
 
 
 router.post('/make-appointment', function (req, res) {
-
+    Appointment.create({
+        tutor: req.body.tutor,
+        tutee: req.cookies.username,
+        datetime: new Date(req.body.datetime),
+        info: {
+            place: req.body.place || "Library"
+        },
+        status: 1
+    }).then(function (result) {
+        res.json({code: 200})
+    }).catch(function (error) {
+        res.json({code: -202, info: "Server Error. " + error.toString()})
+    })
 });
 
 router.post('/change-appointment', function (req, res) {
