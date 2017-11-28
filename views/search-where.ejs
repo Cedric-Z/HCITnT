@@ -30,17 +30,17 @@
 
         <div class="row search-three-steps-nav">
             <div class="col-lg-4">
-                <div class="step-wrapper step-now" id="search_what_button">
-                    <span class="step-icon step-icon-now">
-                        <i class="fa fa-question-circle" aria-hidden="true"></i>
+                <div class="step-wrapper step-done" id="search_what_button">
+                    <span class="step-icon step-icon-done">
+                        <i class="fa fa-check-circle-o" aria-hidden="true"></i>
                     </span>
                     <span class="step-name step-name-now">What</span>
                 </div>
             </div>
             <div class="col-lg-4">
-                <div class="step-wrapper step-now" id="search_when_button">
-                    <span class="step-icon step-icon-now">
-                        <i class="fa fa-question-circle" aria-hidden="true"></i>
+                <div class="step-wrapper step-done" id="search_when_button">
+                    <span class="step-icon step-icon-done">
+                        <i class="fa fa-check-circle-o" aria-hidden="true"></i>
                     </span>
                     <span class="step-name step-name-now">When</span>
                 </div>
@@ -56,27 +56,39 @@
         </div>
 
         <div class="form-group ">
-            <input name="group100" type="radio" id="radio100">
+            <input name="group100" type="radio" id="radio100" checked>
             <label for="radio100">On Campus</label>
         </div>
 
         <div class="form-group">
-            <input name="group100" type="radio" id="radio101" checked>
+            <input name="group100" type="radio" id="radio101">
             <label for="radio101">Off Campus</label>
         </div>
-        <div class="col-lg-12">
-            <div class="custominput-wrapper">
-                <div class="input-group ">
-                    <div class="input-wrapper">
+        <div class="row">
+            <div class="col-lg-4"><a class="btn btn-primary" id="what_previous_button">Back</a></div>
+            <div class="col-lg-4">
+                <div class="input-wrapper" style="width: 70%;align-content: center;text-align: center; margin-left: 100px">
 
-                        <input type="text" class="form-control what-input" placeholder="zip code"
-                               aria-label="Text input with segmented button dropdown" id="what_input">
-                    </div>
-                    <a class="btn btn-primary" id="what_next_button">Next</a>
+                    <input type="text" class="form-control" placeholder="zip code"
+                           aria-label="Text input with segmented button dropdown" id="what_input">
                 </div>
             </div>
-
+            <div class="col-lg-4"><a class="btn btn-primary" id="what_next_button">Next</a></div>
         </div>
+        <!--<div class="col-lg-12">-->
+            <!--<div class="custominput-wrapper">-->
+                <!--<div class="input-group ">-->
+                    <!--<a class="btn btn-primary" id="what_next_button">Next</a>-->
+                    <!--<div class="input-wrapper">-->
+
+                        <!--<input type="text" class="form-control what-input" placeholder="zip code"-->
+                               <!--aria-label="Text input with segmented button dropdown" id="what_input">-->
+                    <!--</div>-->
+                    <!--<a class="btn btn-primary" id="what_next_button">Next</a>-->
+                <!--</div>-->
+            <!--</div>-->
+
+        <!--</div>-->
 
         <!--<div class="progress">-->
         <!--<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 33%"-->

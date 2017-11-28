@@ -24,4 +24,9 @@ $(document).ready(function(){
         window.location.href = "/result?" + $.param(queryObj)
         return false;
     })
+    $("#what_previous_button").click(function(){
+        var queryObj = getUrlVars();
+        window.location.href = "/search-when?" + $.param(queryObj)
+        return false;
+    })
 })

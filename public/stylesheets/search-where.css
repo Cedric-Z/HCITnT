@@ -42,8 +42,11 @@
 
 
 #what_input{
-    display: block;
-    width: 80%;
+    /*display: block;*/
+    width: 70%;
+    text-align: center;
+    margin: auto;
+    margin-top: 0;
 }
 .auto-complete-wrapper{
     display: block;
@@ -73,8 +76,36 @@
     display: inline;
     width: 100%;
 }
-#what_next_button{
-    display: inline-block;
+/*#what_next_button{*/
+    /*display: inline-block;*/
+    /*width: 100px;*/
+    /*height: 40px;*/
+/*}*/
+#what_previous_button{
+    margin-top: 20px;
     width: 100px;
     height: 40px;
+}
+#what_next_button{
+    margin-top: 20px;
+    width: 100px;
+    height: 40px;
+}
+
+.step-icon-done {
+    color: #2fff5d;
+}
+
+.step-now {
+    border-color: white;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.step-next {
+    background-color: #6f2d1a;
+}
+
+.step-done {
+    background-color: #F05F40;
 }
