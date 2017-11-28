@@ -32,11 +32,15 @@
             <div class="col-lg-8 mx-auto">
                 <p class="text-faded mb-5">Start Bootstrap can help you build better websites using the Bootstrap CSS framework! Just download your template and start going, no strings attached!</p>
                 <a class="btn btn-primary btn-xl js-scroll-trigger" href="/search-what">Find a Tutor</a>
-                <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about"> Be a Tutor </a>
+                <a class="btn btn-primary btn-xl js-scroll-trigger" id="be-tutor"> Be a Tutor </a>
             </div>
         </div>
     </div>
 </header>
 </body>
-
+<script>
+    $("#be-tutor").click(function () {
+        $("#login_button").click()
+    })
+</script>
 </html>
