@@ -70,7 +70,12 @@ router.post('/register', function (req, res, next) {
                         username: req.body.username,
                         password: crypto.createHash('md5').update(req.body.password).digest('hex'),
                         isTutor: req.body.isTutor || false,
-                        // FIXME 将Firstname Lastname Phone Zipcode 加入数据库
+                        phone:req.body.phone||"",
+                        zip:req.body.zip||"",
+                        firstname:req.body.firstname,
+                        lastname:req.body.lastname,
+                        info:'{"avatar":"/images/default.jpg"}'
+
                         // fixme 对于Tutor,将其他信息加入info
                     }).then(function (u) {
                         res.json({
