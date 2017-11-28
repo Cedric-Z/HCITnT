@@ -12,7 +12,7 @@ router.get('/', function (req, res, next) {
     // res.render('index', {title: 'Express'});
 });
 router.get('/welcome', function (req, res, next) {
-    res.render('welcome', {title: 'welcome', username: req.cookies.username || "", name: req.cookies.name || ""});
+    res.render('welcome', {title: 'welcome', username: req.cookies.username || "", name: req.cookies.name || "",isTutor:req.cookies.isTutor});
 });
 
 router.get('/search-what', function (req, res, next) {
@@ -20,6 +20,7 @@ router.get('/search-what', function (req, res, next) {
         title: 'search-what',
         username: req.cookies.username || "",
         name: req.cookies.name || ""
+        ,isTutor:req.cookies.isTutor
     });
 });
 
@@ -28,6 +29,7 @@ router.get('/search-when', function (req, res, next) {
         title: 'search-when',
         username: req.cookies.username || "",
         name: req.cookies.name || ""
+        ,isTutor:req.cookies.isTutor
     });
 });
 
@@ -36,15 +38,16 @@ router.get('/search-where', function (req, res, next) {
         title: 'search-where',
         username: req.cookies.username || "",
         name: req.cookies.name || ""
+        ,isTutor:req.cookies.isTutor
     });
 });
 
 router.get('/result', function (req, res, next) {
-    res.render('result', {title: 'result', username: req.cookies.username || "", name: req.cookies.name || ""});
+    res.render('result', {title: 'result', username: req.cookies.username || "", name: req.cookies.name || "",isTutor:req.cookies.isTutor});
 });
 
 router.get('/chat', function (req, res, next) {
-    res.render('chat', {title: 'chat', username: req.cookies.username || "", name: req.cookies.name || ""});
+    res.render('chat', {title: 'chat', username: req.cookies.username || "", name: req.cookies.name || "",isTutor:req.cookies.isTutor});
 });
 
 router.get('/tutor', function (req, res, next) {
@@ -52,6 +55,7 @@ router.get('/tutor', function (req, res, next) {
         title: 'tutor',
         username: req.cookies.username || "",
         name: req.cookies.name || ""
+        ,isTutor:req.cookies.isTutor
     });
 });
 
@@ -60,6 +64,7 @@ router.get('/personal-center', function (req, res, next) {
         title: 'personal-center',
         username: req.cookies.username || "",
         name: req.cookies.name || ""
+        ,isTutor:req.cookies.isTutor
     });
 });
 
@@ -68,6 +73,7 @@ router.get('/register-tutee', function (req, res, next) {
         title: 'register-tutee',
         username: req.cookies.username || "",
         name: req.cookies.name || ""
+        ,isTutor:req.cookies.isTutor
     });
 });
 
@@ -76,6 +82,7 @@ router.get('/register-tutor', function (req, res, next) {
         title: 'register-tutor',
         username: req.cookies.username || "",
         name: req.cookies.name || ""
+        ,isTutor:req.cookies.isTutor
     });
 });
 
@@ -84,6 +91,7 @@ router.get('/register-tutor-when', function (req, res, next) {
         title: 'register-tutor-when',
         username: req.cookies.username || "",
         name: req.cookies.name || ""
+        ,isTutor:req.cookies.isTutor
     });
 });
 
@@ -93,6 +101,7 @@ router.get('/register-tutor-personal-profile', function (req, res, next) {
         title: 'register-tutor-personal-profile',
         username: req.cookies.username || "",
         name: req.cookies.name || ""
+        ,isTutor:req.cookies.isTutor
     });
 });
 //

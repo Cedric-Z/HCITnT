@@ -1,5 +1,10 @@
 <nav class="navbar fixed-top navbar-expand-sm navbar-light bg-light">
-    <a class="navbar-brand" href="#">TnT</a>
+    <% if(isTutor=='true'){ %>
+    <a class="navbar-brand" href="/personal-center">TnT</a>
+    <% } else{%>
+
+    <a class="navbar-brand" href="/search-what">TnT</a>
+    <% } %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -32,7 +37,8 @@
 
         <form class="form-inline my-2 my-lg-0">
             <span style="margin-right: 10px">Welcome, <%= name %>. </span>
-            <button class="btn btn-primary my-2 my-sm-0" type="submit" id="personal_center_button">Personal Center</button>
+            <button class="btn btn-primary my-2 my-sm-0" type="submit" id="personal_center_button">Personal Center
+            </button>
 
         </form>
 
@@ -95,11 +101,15 @@
                 <div style="display: block; margin-bottom:10px;margin-left: 0;margin-right: 0">
                     <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
                     <div style=" margin: 0;display: inline-block ;width: 50%; margin:0; ">
-                        <button type="button" class="btn btn-secondary" id="register-tutor-button" style="width: 100%">Register As Tutor</button>
+                        <button type="button" class="btn btn-secondary" id="register-tutor-button" style="width: 100%">
+                            Register As Tutor
+                        </button>
 
                     </div>
                     <div style="margin: 0;display: inline-block; width: 49%;margin:0;">
-                        <button type="button" class="btn btn-secondary" id="register-tutee-button" href="register-tutee" style="width: 100%">Register As Tutee</button>
+                        <button type="button" class="btn btn-secondary" id="register-tutee-button" href="register-tutee"
+                                style="width: 100%">Register As Tutee
+                        </button>
                     </div>
 
                 </div>
@@ -116,11 +126,11 @@
     })
 
     $("#register-tutor-button").click(function () {
-        location.href="register-tutor";
+        location.href = "register-tutor";
     })
 
     $("#register-tutee-button").click(function () {
-        location.href="register-tutee";
+        location.href = "register-tutee";
     })
 
     $("#login_submit_button").click(function () {
@@ -164,7 +174,7 @@
     })
 
     $("#personal_center_button").click(function () {
-        window.location.href="/personal-center"
+        window.location.href = "/personal-center"
         return false;
     })
 

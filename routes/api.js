@@ -232,7 +232,8 @@ router.post('/make-appointment', function (req, res) {
         tutee: req.cookies.username,
         datetime: new Date(req.body.datetime),
         info: {
-            place: req.body.place || "Library"
+            place: req.body.place || "Library",
+            title: req.body.title
         },
         status: 1
     }).then(function (result) {
@@ -279,5 +280,23 @@ router.post('/change-appointment', function (req, res) {
 
 });
 
+router.post('/tutor', function (req, res) {
+    User.findOne({
+        where: {
+            username: req.body.username
+        }
+    }).then(function (result) {
+        res.json({
+            code: 200,
+            data: result
+        })
+
+    }).catch(function (error) {
+        res.json({code: -202, info: "Server Error. " + error.toString()})
+
+    })
+
+
+})
 
 module.exports = router;
