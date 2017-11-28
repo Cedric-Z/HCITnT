@@ -3500,3 +3500,7 @@ dt{
 .appointment-element-icon{
     margin-right: 10px;
 }
+
+#logout{
+    cursor: pointer;
+}
