@@ -74,7 +74,7 @@ router.post('/register', function (req, res, next) {
                         zip: req.body.zip || "",
                         firstname: req.body.firstname,
                         lastname: req.body.lastname,
-                        info: '{"avatar":"/images/default.jpg"}'
+                        info: {"avatar":"/images/default.jpg"}
 
                         // fixme 对于Tutor,将其他信息加入info
                     }).then(function (u) {
