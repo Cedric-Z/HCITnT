@@ -1,17 +1,23 @@
 <nav class="navbar fixed-top navbar-expand-sm navbar-light bg-light">
-    <% if(isTutor=='true'){ %>
+    <% if(username && isTutor == 'true'){ %>
     <a class="navbar-brand" href="/personal-center">TnT</a>
-    <% } else{%>
+    <% }else if (username){ %>
 
     <a class="navbar-brand" href="/search-what">TnT</a>
+    <% } else{ %>
+
+    <a class="navbar-brand" href="/welcome">TnT</a>
     <% } %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
+
+    <% if(isTutor !== 'true'){ %>
     <form class="form-inline" style="margin-left: 100px">
         <a class="navbar-brand" href="/search-what" style="font-size: 15px">Find a tutor</a>
     </form>
+    <%}%>
     <form class="form-inline" style="margin-left: 20px">
         <a class="navbar-brand" href="/help" style="font-size: 15px">How it works</a>
     </form>
