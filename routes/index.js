@@ -50,6 +50,10 @@ router.get('/chat', function (req, res, next) {
     res.render('chat', {title: 'chat', username: req.cookies.username || "", name: req.cookies.name || "",isTutor:req.cookies.isTutor});
 });
 
+router.get('/help', function (req, res, next) {
+    res.render('help', {title: 'help', username: req.cookies.username || "", name: req.cookies.name || "",isTutor:req.cookies.isTutor});
+});
+
 router.get('/tutor', function (req, res, next) {
     res.render('tutor', {
         title: 'tutor',
