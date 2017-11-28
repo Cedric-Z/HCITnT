@@ -76,13 +76,6 @@ function getUrlVars() {
 
 $(document).ready(function () {
 
-    $(".result-row-wrapper").hover(function () {
-            $(this).addClass("result-row-wrapper-hover")
-        },
-        function () {
-            $(this).removeClass("result-row-wrapper-hover")
-        });
-
 
     var queryObj = getUrlVars();
 
@@ -109,7 +102,14 @@ $(document).ready(function () {
                 var queryObj = getUrlVars();
                 queryObj.tutor = username;
                 window.location.href = "/tutor?" + $.param(queryObj)
-            })
+            });
+            $(".result-row-wrapper").hover(function () {
+                    $(this).addClass("result-row-wrapper-hover")
+                },
+                function () {
+                    $(this).removeClass("result-row-wrapper-hover")
+                });
+
 
         }
     })
